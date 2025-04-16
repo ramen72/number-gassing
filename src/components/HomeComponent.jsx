@@ -1,15 +1,20 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { inputValue, playerOne } from '../features/numberGassing/counterSlice';
+import { inputValue, playerOne, playerThree, playerTwo } from '../features/numberGassing/counterSlice';
 
 const HomeComponent = () => {
     
     const userInputValue = useSelector((state) => state.numberGassing.value)
     const player = useSelector((state) => state.numberGassing.player)
     const inValue = useSelector((state) => state.numberGassing.inValue)
-    const playerOneStatus = useSelector((state) => state.numberGassing.playerOneStatus)
     const chance = useSelector((state) => state.numberGassing.chance)
     const chanceStatus = useSelector((state) => state.numberGassing.chanceStatus)
+
+    const startBtnStatus = useSelector((state) => state.numberGassing.startBtnStatus)
+    const playerTwoStatus = useSelector((state) => state.numberGassing.playerTwoStatus)
+    const playerThreeStatus = useSelector((state) => state.numberGassing.playerThreeStatus)
+    const playerFourStatus = useSelector((state) => state.numberGassing.playerFourStatus)
+    const playerFiveStatus = useSelector((state) => state.numberGassing.playerFiveStatus)
 
     const dispatch = useDispatch()
 
@@ -26,11 +31,17 @@ const HomeComponent = () => {
                     <div className="flex justify-start items-center gap-x-1">
                         <input type='password' value={inValue} onChange={(e) => dispatch(inputValue(e.target.value))} placeholder='Enter your number' className='p-2 w-[370px] border'/>
                         {
-                            playerOneStatus
-                            ?
-                            <button onClick={(e)=>dispatch(playerOne())} className='w-24 py-2 px-3 border text-center bg-slate-400 transition-all duration-300 hover:bg-slate-500 hover:border-slate-400 capitalize font-bold hover:text-white'>Start</button>
-                            :
-                            <button onClick={(e)=>dispatch(playerOne())} className='w-24 py-2 px-3 border text-center bg-slate-400 transition-all duration-300 hover:bg-slate-500 hover:border-slate-400 capitalize font-bold hover:text-white'>guess</button>
+                            startBtnStatus ? (
+                                <button onClick={(e)=>dispatch(playerOne())} className='w-24 py-2 px-3 border text-center bg-slate-400 transition-all duration-300 hover:bg-slate-500 hover:border-slate-400 capitalize font-bold hover:text-white'>Start</button>
+                            ) : playerTwoStatus ? (
+                                <button onClick={(e)=>dispatch(playerTwo())} className='w-24 py-2 px-3 border text-center bg-slate-400 transition-all duration-300 hover:bg-slate-500 hover:border-slate-400 capitalize font-bold hover:text-white'>guess-2</button>
+                            ) : playerThreeStatus ? (
+                                <button onClick={(e)=>dispatch(playerThree())} className='w-24 py-2 px-3 border text-center bg-slate-400 transition-all duration-300 hover:bg-slate-500 hover:border-slate-400 capitalize font-bold hover:text-white'>guess-3</button>
+                            ) : playerFourStatus ? (
+                                <button onClick={(e)=>dispatch(player())} className='w-24 py-2 px-3 border text-center bg-slate-400 transition-all duration-300 hover:bg-slate-500 hover:border-slate-400 capitalize font-bold hover:text-white'>guess-4</button>
+                            ) : playerFiveStatus ? (
+                                <button onClick={(e)=>dispatch(player())} className='w-24 py-2 px-3 border text-center bg-slate-400 transition-all duration-300 hover:bg-slate-500 hover:border-slate-400 capitalize font-bold hover:text-white'>guess-5</button>
+                            ) : null
                         }
                     </div>
                 </div>
