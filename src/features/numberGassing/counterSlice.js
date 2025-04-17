@@ -136,23 +136,23 @@ export const numberGassingSlice = createSlice({
       }
     },
     showResult: (state, action) => {
-      let resultForPlayerOne = state.playerTwoEnteredNumber.indexOf(state.playerOneEnteredNumber)
-      let resultForPlayerTwo = state.playerThreeEnteredNumber.indexOf(state.playerOneEnteredNumber)
-      let resultForPlayerThree = state.playerFourEnteredNumber.indexOf(state.playerOneEnteredNumber)
+      let resultForPlayerTwo = state.playerTwoEnteredNumber.indexOf(state.playerOneEnteredNumber)
+      let resultForPlayerThree = state.playerThreeEnteredNumber.indexOf(state.playerOneEnteredNumber)
+      let resultForPlayerFour = state.playerFourEnteredNumber.indexOf(state.playerOneEnteredNumber)
 
-      if( resultForPlayerOne === -1 ){
+      if( resultForPlayerTwo === -1 ){
         state.result.push("player-1 is win against player-2.")
       }else{
         state.result.push("player-2 is win.")
       }
       
-      if( resultForPlayerTwo === -1 ){
+      if( resultForPlayerThree === -1 ){
         state.result.push("player-1 is win against player-3.")
       }else{
         state.result.push("player-3 is win.")
       }
       
-      if( resultForPlayerThree === -1 ){
+      if( resultForPlayerFour === -1 ){
         state.result.push("player-1 is win  against player-4.")
       }else{
         state.result.push("player-4 is win.")
