@@ -4,19 +4,25 @@ const initialState = {
   value:"",
   inValue: "",
   player:"player-1",
-  playerOneEnteredNumber:"",
-  playerTwoEnteredNumber:[],
-  playerThreeEnteredNumber:[],
-  playerFourEnteredNumber:[],
-  playerFiveEnteredNumber:[],
+ 
+
   chanceCount: 3,
   chance: 3,
   chanceStatus:false,
+
   startBtnStatus: true,
   playerTwoStatus: false,
   playerThreeStatus: false,
   playerFourStatus: false,
   playerFiveStatus: false,
+
+  playerOneEnteredNumber:"",
+  playerTwoEnteredNumber:[],
+  playerThreeEnteredNumber:[],
+  playerFourEnteredNumber:[],
+  playerFiveEnteredNumber:[],
+
+  result: [],
 }
 
 export const numberGassingSlice = createSlice({
@@ -38,10 +44,8 @@ export const numberGassingSlice = createSlice({
         state.playerTwoStatus = true;
         state.chanceStatus = true;
       }
-      console.log(state.playerOneEnteredNumber)
     },
     playerTwo:(state, action)=>{
-      console.log(state.chance)
       if( state.inValue <= 0){
         alert("Input Number can not be zero or negative value")
         state.inValue = ""
@@ -57,6 +61,7 @@ export const numberGassingSlice = createSlice({
           state.playerTwoEnteredNumber.push(state.inValue)
           state.inValue = "";          
         }else {
+          state.playerTwoEnteredNumber.push(state.inValue)
           state.player = "player-3";
           state.playerTwoStatus = false;
           state.playerThreeStatus = true;
@@ -64,7 +69,6 @@ export const numberGassingSlice = createSlice({
           state.chance = 3;
         }
       }
-      console.log(state.chance)
     },
   },
 })

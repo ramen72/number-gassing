@@ -15,8 +15,23 @@ const HomeComponent = () => {
     const playerThreeStatus = useSelector((state) => state.numberGassing.playerThreeStatus)
     const playerFourStatus = useSelector((state) => state.numberGassing.playerFourStatus)
     const playerFiveStatus = useSelector((state) => state.numberGassing.playerFiveStatus)
+    
+    const playerOneEnteredNumber = useSelector((state) => state.numberGassing.playerOneEnteredNumber);
+    const playerTwoEnteredNumber = useSelector((state) => state.numberGassing.playerTwoEnteredNumber);
+    const playerThreeEnteredNumber = useSelector((state) => state.numberGassing.playerThreeEnteredNumber);
+    const playerFourEnteredNumber = useSelector((state) => state.numberGassing.playerFourEnteredNumber);
+    const playerFiveEnteredNumber = useSelector((state) => state.numberGassing.playerFiveEnteredNumber);
+    const result = useSelector((state) => state.numberGassing.result);
+
 
     const dispatch = useDispatch()
+
+    console.log(`"playerOneEnteredNumber: " ${playerOneEnteredNumber}`)
+    console.log(`"playerTwoEnteredNumber: " ${playerTwoEnteredNumber}`)
+    console.log(`"playerThreeEnteredNumber: " ${playerThreeEnteredNumber}`)
+    console.log(`"playerFourEnteredNumber: " ${playerFourEnteredNumber}`)
+    console.log(`"playerFiveEnteredNumber: " ${playerFiveEnteredNumber}`)
+    console.log(`"result: " ${result}`)
 
     return (
         <>
