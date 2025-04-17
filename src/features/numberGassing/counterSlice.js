@@ -4,8 +4,11 @@ const initialState = {
   value:"",
   inValue: "",
   player:"player-1",
-  playerOneNumber:"",
-  playerTwoNumberArray:[],
+  playerOneEnteredNumber:"",
+  playerTwoEnteredNumber:[],
+  playerThreeEnteredNumber:[],
+  playerFourEnteredNumber:[],
+  playerFiveEnteredNumber:[],
   chanceCount: 3,
   chance: 3,
   chanceStatus:false,
@@ -28,55 +31,41 @@ export const numberGassingSlice = createSlice({
         alert("Input Number can not be zero or negative value")
         state.inValue = ""
       }else{
-        state.playerOneNumber = state.inValue
+        state.playerOneEnteredNumber = state.inValue
         state.inValue = "";
         state.player = "player-2";
         state.startBtnStatus = false;
         state.playerTwoStatus = true;
         state.chanceStatus = true;
       }
-      console.log(state.playerOneNumber, state.playerOneStatus)
+      console.log(state.playerOneEnteredNumber)
     },
     playerTwo:(state, action)=>{
+      console.log(state.chance)
       if( state.inValue <= 0){
         alert("Input Number can not be zero or negative value")
         state.inValue = ""
       }else{
-
-        if( state.chance <= 1){
+        if( state.inValue === state.playerOneEnteredNumber){
+          state.player = "player-3";
+          state.playerTwoStatus = false;
+          state.playerThreeStatus = true;
+          state.chanceStatus = true;
+          state.chance = 3;
+        } else if( state.chance <= 5 && state.chance > 1){
+          state.chance--
+          state.playerTwoEnteredNumber.push(state.inValue)
+          state.inValue = "";          
+        }else {
           state.player = "player-3";
           state.playerTwoStatus = false;
           state.playerThreeStatus = true;
           state.chanceStatus = true;
           state.chance = 3;
         }
-        if( state.chance <= 5 && state.chance > 1){
-          state.chance--
-          state.playerTwoNumberArray.push(state.inValue)
-          state.inValue = "";
-          
-        }
-        // state.player = "player-3";
-        // state.playerTwoStatus = false;
-        // state.playerThreeStatus = true;
-        // state.chanceStatus = true;
       }
-      console.log(state.playerOneNumber, state.playerOneStatus)
+      console.log(state.chance)
     },
-    // playerThree:(state, action)=>{
-    //   if( state.inValue <= 0){
-    //     alert("Input Number can not be zero or negative value")
-    //     state.inValue = ""
-    //   }else{
-    //     state.playerOneNumber = state.inValue
-    //     state.inValue = "";
-    //     state.player = "player-4";
-    //     state.playerThreeStatus = false;
-    //     state.playerFourStatus = true;
-    //     state.chanceStatus = true;
-    //   }
-    //   console.log(state.playerOneNumber, state.playerOneStatus)
-    // },
   },
 })
 
