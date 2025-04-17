@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { inputValue, playerOne, playerThree, playerTwo } from '../features/numberGassing/counterSlice';
+import { inputValue, playerFour, playerOne, playerThree, playerTwo, showResult } from '../features/numberGassing/counterSlice';
 
 const HomeComponent = () => {
     
@@ -9,6 +9,8 @@ const HomeComponent = () => {
     const inValue = useSelector((state) => state.numberGassing.inValue)
     const chance = useSelector((state) => state.numberGassing.chance)
     const chanceStatus = useSelector((state) => state.numberGassing.chanceStatus)
+    const isPlayerName = useSelector((state) => state.numberGassing.isPlayerName)
+    const inputFieldStatus = useSelector((state) => state.numberGassing.inputFieldStatus)
 
     const startBtnStatus = useSelector((state) => state.numberGassing.startBtnStatus)
     const playerTwoStatus = useSelector((state) => state.numberGassing.playerTwoStatus)
@@ -27,24 +29,35 @@ const HomeComponent = () => {
     const dispatch = useDispatch()
 
     console.log(`"playerOneEnteredNumber: " ${playerOneEnteredNumber}`)
-    console.log(`"playerTwoEnteredNumber: " ${playerTwoEnteredNumber}`)
-    console.log(`"playerThreeEnteredNumber: " ${playerThreeEnteredNumber}`)
-    console.log(`"playerFourEnteredNumber: " ${playerFourEnteredNumber}`)
+    // console.log(`"playerTwoEnteredNumber: " ${playerTwoEnteredNumber}`)
+    // console.log(`"playerThreeEnteredNumber: " ${playerThreeEnteredNumber}`)
+    // console.log(`"playerFourEnteredNumber: " ${playerFourEnteredNumber}`)
     console.log(`"playerFiveEnteredNumber: " ${playerFiveEnteredNumber}`)
-    console.log(`"result: " ${result}`)
+    console.log(`result:  ${result}`)
+
+    function handelClickLastUser(){
+        dispatch(playerFour())
+        dispatch(showResult())
+    }
 
     return (
         <>
             <div className="w-screen h-screen flex justify-center items-center">
                 <div className="w-[500px] h-96 bg-slate-400 border rounded-xl p-4 text-center">
                     <h1 className='font-bold text-4xl mb-6 text-white'>Number Gassing Game</h1>
-                    <h3 className='mb-4 text-xl capitalize font-bold text-indigo-700'>{player}</h3>
+                    {
+                        isPlayerName && 
+                        <h3 className='mb-4 text-xl capitalize font-bold text-indigo-700'>{player}</h3>
+                    }
                     {
                         chanceStatus && 
                         <p className='mb-1 text-xl text-left capitalize text-indigo-700'>Chance : {chance}</p>
                     }
                     <div className="flex justify-start items-center gap-x-1">
-                        <input type='password' value={inValue} onChange={(e) => dispatch(inputValue(e.target.value))} placeholder='Enter your number' className='p-2 w-[370px] border'/>
+                        {
+                            inputFieldStatus && 
+                            <input type='password' value={inValue} onChange={(e) => dispatch(inputValue(e.target.value))} placeholder='Enter your number' className='p-2 w-[370px] border'/>
+                        }
                         {
                             startBtnStatus ? (
                                 <button onClick={(e)=>dispatch(playerOne())} className='w-24 py-2 px-3 border text-center bg-slate-400 transition-all duration-300 hover:bg-slate-500 hover:border-slate-400 capitalize font-bold hover:text-white'>Start</button>
@@ -53,7 +66,7 @@ const HomeComponent = () => {
                             ) : playerThreeStatus ? (
                                 <button onClick={(e)=>dispatch(playerThree())} className='w-24 py-2 px-3 border text-center bg-slate-400 transition-all duration-300 hover:bg-slate-500 hover:border-slate-400 capitalize font-bold hover:text-white'>guess-3</button>
                             ) : playerFourStatus ? (
-                                <button onClick={(e)=>dispatch(player())} className='w-24 py-2 px-3 border text-center bg-slate-400 transition-all duration-300 hover:bg-slate-500 hover:border-slate-400 capitalize font-bold hover:text-white'>guess-4</button>
+                                <button onClick={handelClickLastUser} className='w-24 py-2 px-3 border text-center bg-slate-400 transition-all duration-300 hover:bg-slate-500 hover:border-slate-400 capitalize font-bold hover:text-white'>guess-4</button>
                             ) : playerFiveStatus ? (
                                 <button onClick={(e)=>dispatch(player())} className='w-24 py-2 px-3 border text-center bg-slate-400 transition-all duration-300 hover:bg-slate-500 hover:border-slate-400 capitalize font-bold hover:text-white'>guess-5</button>
                             ) : null
