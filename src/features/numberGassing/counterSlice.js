@@ -17,7 +17,9 @@ const initialState = {
   playerTwoStatus: false,
   playerThreeStatus: false,
   playerFourStatus: false,
-  playerFiveStatus: false,
+  isShowResultBtn: false,
+  isShowResultSummary: false,
+  isShowResultInDetails: false,
 
   playerOneEnteredNumber:"",
   playerTwoEnteredNumber:[],
@@ -62,7 +64,7 @@ export const numberGassingSlice = createSlice({
           state.chanceStatus = true;
           state.chance = state.chanceCount;
           state.inValue = "";
-        } else if( state.chance <= 5 && state.chance > 1){
+        } else if( state.chance <= state.chanceCount && state.chance > 1){
           state.chance--
           state.playerTwoEnteredNumber.push(state.inValue)
           state.inValue = "";          
@@ -90,7 +92,7 @@ export const numberGassingSlice = createSlice({
           state.chanceStatus = true;
           state.chance = state.chanceCount;
           state.inValue = "";
-        } else if( state.chance <= 5 && state.chance > 1){
+        } else if( state.chance <= state.chanceCount && state.chance > 1){
           state.chance--
           state.playerThreeEnteredNumber.push(state.inValue)
           state.inValue = "";          
@@ -116,6 +118,7 @@ export const numberGassingSlice = createSlice({
           state.chanceStatus = false;
           state.inputFieldStatus = false;
           state.isPlayerName = false;
+          state.isShowResultBtn = true;
           state.inValue = "";
         } else if( state.chance <= 5 && state.chance > 1){
           state.chance--
@@ -127,23 +130,45 @@ export const numberGassingSlice = createSlice({
           state.chanceStatus = false;
           state.inputFieldStatus = false;
           state.isPlayerName = false;
+          state.isShowResultBtn = true;
           state.inValue = "";  
         }
       }
     },
     showResult: (state, action) => {
-      let pOneWind = state.playerTwoEnteredNumber.indexOf(state.playerOneEnteredNumber)
-      if( pOneWind = -1 ){
-        state.result.push("player-1 is win.")
+      let resultForPlayerOne = state.playerTwoEnteredNumber.indexOf(state.playerOneEnteredNumber)
+      let resultForPlayerTwo = state.playerThreeEnteredNumber.indexOf(state.playerOneEnteredNumber)
+      let resultForPlayerThree = state.playerFourEnteredNumber.indexOf(state.playerOneEnteredNumber)
+
+      if( resultForPlayerOne === -1 ){
+        state.result.push("player-1 is win against player-2.")
       }else{
         state.result.push("player-2 is win.")
       }
-      console.log("first", pOneWind)
+      
+      if( resultForPlayerTwo === -1 ){
+        state.result.push("player-1 is win against player-3.")
+      }else{
+        state.result.push("player-3 is win.")
+      }
+      
+      if( resultForPlayerThree === -1 ){
+        state.result.push("player-1 is win  against player-4.")
+      }else{
+        state.result.push("player-4 is win.")
+      }
+      
+      state.isShowResultBtn = false;
+      state.isShowResultSummary = true;      
+    },
+    showResultInDetails: (state, action) =>{
+      state.isShowResultSummary = false
+      state.isShowResultInDetails = true
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { inputValue, playerOne, playerTwo, playerThree, playerFour, showResult} = numberGassingSlice.actions
+export const { inputValue, playerOne, playerTwo, playerThree, playerFour, showResult, showResultInDetails} = numberGassingSlice.actions
 
 export default numberGassingSlice.reducer
