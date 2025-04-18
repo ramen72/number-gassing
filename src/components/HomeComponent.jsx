@@ -79,7 +79,6 @@ const HomeComponent = () => {
                                         ))
                                     }
                                 </ul>
-
                                 <button onClick={(e)=>dispatch(showResultInDetails())} className='mt-5 py-2 px-3 border text-center bg-slate-400 transition-all duration-300 hover:bg-slate-500 hover:border-slate-400 capitalize font-bold hover:text-white'>Show Result Details</button>
                             </div>
                         }
