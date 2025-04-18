@@ -1,10 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { inputValue, playerFour, playerOne, playerThree, playerTwo, showResult, showResultInDetails } from '../features/numberGassing/counterSlice';
+import { inputValue, playerFour, playerOne, playerThree, playerTwo, showResult, showResultInDetails } from '../features/numberGuessing/numberGuessingSlice.js';
 
 const HomeComponent = () => {
     
-    const userInputValue = useSelector((state) => state.numberGassing.value)
     const player = useSelector((state) => state.numberGassing.player)
     const inValue = useSelector((state) => state.numberGassing.inValue)
     const chance = useSelector((state) => state.numberGassing.chance)
@@ -42,7 +41,7 @@ const HomeComponent = () => {
         <>
             <div className="w-screen h-screen flex justify-center items-center">
                 <div className="w-[500px] h-96 bg-slate-400 border rounded-xl p-4 text-center relative">
-                    <h1 className='font-bold text-4xl mb-6 text-white'>Number Gassing Game</h1>
+                    <h1 className='font-bold text-4xl mb-6 text-white'>Number Guessing Game</h1>
                     {
                         isPlayerName && 
                         <h3 className='mb-4 text-xl capitalize font-bold text-indigo-700'>{player}</h3>
