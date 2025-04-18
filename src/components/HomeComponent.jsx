@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { inputValue, playerFour, playerOne, playerThree, playerTwo, showResult, showResultInDetails } from '../features/numberGuessing/numberGuessingSlice.js';
+import { inputValue, playAgain, playerFour, playerOne, playerThree, playerTwo, showResult, showResultInDetails } from '../features/numberGuessing/numberGuessingSlice.js';
 
 const HomeComponent = () => {
     
@@ -85,11 +85,14 @@ const HomeComponent = () => {
                         {
                             isShowResultInDetails
                             &&
-                            <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
+                            <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-left'>
                                 <h3>Player-1 entered number : {playerOneEnteredNumber}</h3>
                                 <h3>Player-2 entered number : {playerTwoEnteredNumber.map((item,index)=>`${item}, `)}</h3>
                                 <h3>Player-3 entered number : {playerThreeEnteredNumber.map((item,index)=>`${item}, `)}</h3>
                                 <h3>Player-4 entered number : {playerFourEnteredNumber.map((item,index)=>`${item}, `)}</h3>
+                                {
+                                    <button onClick={(e)=>dispatch(playAgain())} className='mt-5 py-2 px-3 border text-center bg-slate-400 transition-all duration-300 hover:bg-slate-500 hover:border-slate-400 capitalize font-bold hover:text-white'>Play Again</button>
+                                }
                             </div>
                         }
                     </div>

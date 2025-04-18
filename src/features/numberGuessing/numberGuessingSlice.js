@@ -164,11 +164,31 @@ export const numberGassingSlice = createSlice({
     showResultInDetails: (state, action) =>{
       state.isShowResultSummary = false
       state.isShowResultInDetails = true
+    },
+    playAgain: (state, action) =>{
+      state.player = "player-1";
+      state.chance = null;
+      state.chanceStatus =false;
+      state.isPlayerName = true;
+      state.inputFieldStatus = true;
+      state.startBtnStatus = true;
+      state.playerTwoStatus = false;
+      state.playerThreeStatus = false;
+      state.playerFourStatus = false;
+      state.isShowResultBtn = false;
+      state.isShowResultSummary = false;
+      state.isShowResultInDetails = false;
+      state.playerOneEnteredNumber = "";
+      state.playerTwoEnteredNumber = [];
+      state.playerThreeEnteredNumber = [];
+      state.playerFourEnteredNumber = [];
+      state.playerFiveEnteredNumber = [];
+      state.result = [];
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { inputValue, playerOne, playerTwo, playerThree, playerFour, showResult, showResultInDetails} = numberGassingSlice.actions
+export const { inputValue, playerOne, playerTwo, playerThree, playerFour, showResult, showResultInDetails, playAgain} = numberGassingSlice.actions
 
 export default numberGassingSlice.reducer
