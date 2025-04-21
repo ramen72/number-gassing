@@ -38,6 +38,14 @@ export const numberGassingSlice = createSlice({
       state.inValue = action.payload
     },
     playerOne: (state, action) => {
+      if( isNaN(state.inValue) ) {
+        state.inValue = "";
+        return alert("Input Number can not be characters value")
+      }
+      if( state.inValue >= 10 ) {
+        state.inValue = "";
+        return alert("Input Number can not be greater-than Nine")
+      }
       if( state.inValue <= 0){
         alert("Input Number can not be zero or negative value")
         state.inValue = ""
@@ -52,6 +60,14 @@ export const numberGassingSlice = createSlice({
       }
     },
     playerTwo:(state, action)=>{
+      if( isNaN(state.inValue) ) {
+        state.inValue = "";
+        return alert("Input Number can not be characters value")
+      }
+      if( state.inValue >= 10 ) {
+        state.inValue = "";
+        return alert("Input Number can not be greater-than Nine")
+      }
       if( state.inValue <= 0){
         alert("Input Number can not be zero or negative value")
         state.inValue = ""
@@ -80,6 +96,14 @@ export const numberGassingSlice = createSlice({
       }
     },
     playerThree:(state, action)=>{
+      if( isNaN(state.inValue) ) {
+        state.inValue = "";
+        return alert("Input Number can not be characters value")
+      }
+      if( state.inValue >= 10 ) {
+        state.inValue = "";
+        return alert("Input Number can not be greater-than Nine")
+      }
       if( state.inValue <= 0){
         alert("Input Number can not be zero or negative value")
         state.inValue = ""
@@ -108,6 +132,14 @@ export const numberGassingSlice = createSlice({
       }
     },
     playerFour:(state, action)=>{
+      if( isNaN(state.inValue) ) {
+        state.inValue = "";
+        return alert("Input Number can not be characters value")
+      }
+      if( state.inValue >= 10 ) {
+        state.inValue = "";
+        return alert("Input Number can not be greater-than Nine")
+      }
       if( state.inValue <= 0){
         alert("Input Number can not be zero or negative value")
         state.inValue = ""
