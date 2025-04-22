@@ -28,14 +28,6 @@ const HomeComponent = () => {
 
 
     const dispatch = useDispatch()
-
-    console.log(`playerOneEnteredNumber: ${playerOneEnteredNumber}`)
-    console.log(`playerTwoEnteredNumber: ${playerTwoEnteredNumber}`)
-    console.log(`playerThreeEnteredNumber: ${playerThreeEnteredNumber}`)
-    console.log(`playerFourEnteredNumber: ${playerFourEnteredNumber}`)
-    console.log(`playerFiveEnteredNumber: ${playerFiveEnteredNumber}`)
-    console.log(`result: ${result}`)
-
     
     return (
         <>
